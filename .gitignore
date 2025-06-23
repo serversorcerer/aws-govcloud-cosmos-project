@@ -1,7 +1,0 @@
-# Terraform build artifacts
-.terraform/
-*.tfstate
-*.tfstate.*
-terraform.tfstate
-terraform.tfstate.backup
-.tfplan
