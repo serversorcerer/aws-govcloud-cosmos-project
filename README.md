@@ -1,8 +1,7 @@
 # COSMOS Project — AWS GovCloud Reference Architecture
 
-This project models a real-world, multi-environment AWS GovCloud network architecture aligned with how SBS and COSMOS mission teams operate.
+This project models a real-world, multi-environment AWS GovCloud network architecture reflecting patterns used by SBS and COSMOS mission teams. It is built entirely with **CloudFormation** and demonstrates:
 
-It is built entirely with **CloudFormation** and simulates:
 - Segmented VPCs for Dev, Shared Services, and Prod
 - Centralized routing using AWS Transit Gateway (TGW)
 - Propagation via a single TGW Route Table
@@ -12,7 +11,7 @@ It is built entirely with **CloudFormation** and simulates:
 
 ## 📐 Architecture Overview
 
-![COSMOS Architecture](/architecture/cosmos-project-architecture.png)
+![COSMOS Architecture](architecture/cosmos-project-architecture.png)
 
 ---
 
@@ -63,10 +62,9 @@ Repeat for each VPC, attachment, and route table propagation.
 
 ```bash
 aws-govcloud-cosmos-project/
-├── cloudformation/         # All IaC templates
-├── architecture/           # Final architecture diagrams
-│   └── cosmos-final-architecture-transparent.png
-├── archive/terraform/      # Legacy Terraform starter (optional)
+├── cloudformation/         # All CloudFormation templates
+├── architecture/           # Final network architecture diagrams
+│   └── cosmos-project-architecture.png
 └── README.md
 ```
 
@@ -80,3 +78,15 @@ aws-govcloud-cosmos-project/
 - [x] Diagram finalized + embedded
 
 ---
+
+## 🔁 Quick Deploy Option
+
+To launch the Dev, Shared, and Prod VPCs along with the Transit Gateway:
+
+```bash
+./deploy.sh
+```
+
+📌 After running the script, edit it to add your real VPC/Subnet/TGW IDs for the TGW attachments and route table propagation.
+
+This keeps deployment simple and structured.
