@@ -12,7 +12,7 @@ It is built entirely with **CloudFormation** and simulates:
 
 ## 📐 Architecture Overview
 
-![COSMOS Architecture](/architecture/cosmos-final-architecture-transparent.png)
+![COSMOS Architecture](/architecture/cosmos-project-architecture.png)
 
 ---
 
