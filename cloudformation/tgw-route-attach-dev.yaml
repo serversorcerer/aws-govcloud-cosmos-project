@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create TGW Route Table + associate & propagate VPC attachment
+
+Parameters:
+  TransitGatewayId:
+    Type: String
+    Description: The ID of the Transit Gateway
+  TransitGatewayAttachmentId:
+    Type: String
+    Description: The ID of the VPC attachment to associate and propagate
+
+Resources:
+  TGWRouteTable:
+    Type: AWS::EC2::TransitGatewayRouteTable
+    Properties:
+      TransitGatewayId: !Ref TransitGatewayId
+      Tags:
+        - Key: Name
+          Value: COSMOS-TGW-RouteTable
+
+  TGWRouteTablePropagation:
+    Type: AWS::EC2::TransitGatewayRouteTablePropagation
+    Properties:
+      TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentId
+      TransitGatewayRouteTableId: !Ref TGWRouteTable
+
+Outputs:
+  RouteTableId:
+    Description: TGW Route Table ID
+    Value: !Ref TGWRouteTable

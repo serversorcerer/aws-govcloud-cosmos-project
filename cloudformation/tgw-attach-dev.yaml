@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Attach a VPC to the COSMOS Transit Gateway
+
+Parameters:
+  VpcId:
+    Type: String
+    Description: The ID of the VPC to attach
+  SubnetIds:
+    Type: List<String>
+    Description: List of Subnet IDs in the VPC for TGW attachment
+  TransitGatewayId:
+    Type: String
+    Description: The ID of the Transit Gateway
+
+Resources:
+  TGWAttachment:
+    Type: AWS::EC2::TransitGatewayVpcAttachment
+    Properties:
+      VpcId: !Ref VpcId
+      SubnetIds: !Ref SubnetIds
+      TransitGatewayId: !Ref TransitGatewayId
+      Tags:
+        - Key: Name
+          Value: COSMOS-VPC-Attachment
+
+Outputs:
+  AttachmentId:
+    Description: ID of the Transit Gateway attachment
+    Value: !Ref TGWAttachment

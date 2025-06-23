@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Propagate Prod VPC routes into COSMOS TGW Route Table
+
+Parameters:
+  TransitGatewayRouteTableId:
+    Type: String
+    Description: The ID of the existing TGW route table
+
+  TransitGatewayAttachmentId:
+    Type: String
+    Description: The ID of the Prod VPC TGW attachment
+
+Resources:
+  TGWRouteTablePropagationProd:
+    Type: AWS::EC2::TransitGatewayRouteTablePropagation
+    Properties:
+      TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentId
+      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableId
+
+Outputs:
+  ProdTGWPropagation:
+    Description: Route propagation for Prod VPC into TGW route table
+    Value: !Ref TGWRouteTablePropagationProd

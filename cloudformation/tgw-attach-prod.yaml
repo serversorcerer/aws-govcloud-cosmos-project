@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Attach COSMOS Prod VPC to the Transit Gateway
+
+Parameters:
+  VpcId:
+    Type: String
+    Description: The ID of the Prod VPC
+
+  SubnetIds:
+    Type: CommaDelimitedList
+    Description: Subnet(s) in the Prod VPC for the TGW attachment
+
+  TransitGatewayId:
+    Type: String
+    Description: The ID of the Transit Gateway
+
+Resources:
+  TGWAttachmentProd:
+    Type: AWS::EC2::TransitGatewayAttachment
+    Properties:
+      TransitGatewayId: !Ref TransitGatewayId
+      VpcId: !Ref VpcId
+      SubnetIds: !Ref SubnetIds
+      Tags:
+        - Key: Name
+          Value: COSMOS-TGW-Attachment-Prod
+
+Outputs:
+  TGWAttachmentProdId:
+    Description: Transit Gateway Attachment ID for Prod
+    Value: !Ref TGWAttachmentProd

@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Propagate Shared VPC attachment into existing TGW route table
+
+Parameters:
+  TransitGatewayRouteTableId:
+    Type: String
+    Description: The ID of the existing TGW route table
+  TransitGatewayAttachmentId:
+    Type: String
+    Description: The ID of the Shared VPC attachment
+
+Resources:
+  SharedTGWRouteTablePropagation:
+    Type: AWS::EC2::TransitGatewayRouteTablePropagation
+    Properties:
+      TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentId
+      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableId
+
+Outputs:
+  RouteTablePropagation:
+    Description: Shared VPC propagation into TGW Route Table
+    Value: !Ref SharedTGWRouteTablePropagation

@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create the COSMOS Prod VPC and subnet
+
+Resources:
+  ProdVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.20.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: COSMOS-Prod-VPC
+
+  ProdSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref ProdVPC
+      CidrBlock: 10.20.1.0/24
+      AvailabilityZone: !Select [ 0, !GetAZs "" ]
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: COSMOS-Prod-Subnet
+
+Outputs:
+  ProdVpcId:
+    Description: The ID of the COSMOS Prod VPC
+    Value: !Ref ProdVPC
+
+  ProdSubnetId:
+    Description: The ID of the COSMOS Prod Subnet
+    Value: !Ref ProdSubnet

@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Shared Services VPC and Subnet for COSMOS reference architecture
+
+Parameters:
+  VpcCidr:
+    Type: String
+    Default: 10.10.0.0/16
+    Description: CIDR block for the Shared Services VPC
+
+Resources:
+  SharedVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCidr
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: COSMOS-Shared-VPC
+
+  SharedSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref SharedVPC
+      CidrBlock: 10.10.1.0/24
+      AvailabilityZone: !Select [ 0, !GetAZs "" ]
+      Tags:
+        - Key: Name
+          Value: COSMOS-Shared-Subnet
+
+Outputs:
+  SharedVpcId:
+    Description: The ID of the Shared Services VPC
+    Value: !Ref SharedVPC
+
+  SharedSubnetId:
+    Description: The ID of the Shared Services Subnet
+    Value: !Ref SharedSubnet
