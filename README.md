@@ -64,7 +64,7 @@ Repeat for each VPC, attachment, and route table propagation.
 aws-govcloud-cosmos-project/
 ├── cloudformation/         # All CloudFormation templates
 ├── architecture/           # Final network architecture diagrams
-│   └── cosmos-project-architecture.png
+│   └── GovCloudArchitecture.png
 └── README.md
 ```
 
