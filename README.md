@@ -1,6 +1,6 @@
-# COSMOS Project — AWS GovCloud Reference Architecture
+# GovCloud Onboarding Framework
 
-This project models a real-world, multi-environment AWS GovCloud network architecture reflecting patterns used by SBS and COSMOS mission teams. It is built entirely with **CloudFormation** and demonstrates:
+Simulates secure, AWS-native account provisioning infrastructure using CloudFormation. Includes VPC creation, centralized Transit Gateway routing, and least-privilege multi-environment networking.
 
 - Segmented VPCs for Dev, Shared Services, and Prod
 - Centralized routing using AWS Transit Gateway (TGW)
@@ -11,7 +11,7 @@ This project models a real-world, multi-environment AWS GovCloud network archite
 
 ## 📐 Architecture Overview
 
-![COSMOS Architecture](architecture/cosmos-project-architecture.png)
+![GovCloud Onboarding Framework Architecture](architecture/GovCloudArchitecture.png)
 
 ---
 
@@ -39,7 +39,7 @@ This project models a real-world, multi-environment AWS GovCloud network archite
 ```bash
 aws cloudformation deploy \
   --template-file cloudformation/vpc-dev.yaml \
-  --stack-name cosmos-vpc-dev \
+  --stack-name govcloud-vpc-dev \
   --region us-east-1 \
   --capabilities CAPABILITY_NAMED_IAM
 ```
@@ -53,7 +53,7 @@ Repeat for each VPC, attachment, and route table propagation.
 - Multi-account architecture (Dev, Shared, Prod)
 - Transit Gateway + centralized routing
 - Least-privilege route propagation
-- Scalable GovCloud patterns used in COSMOS
+- Scalable GovCloud patterns
 - Visual documentation aligned with deployed infra
 
 ---
@@ -61,7 +61,7 @@ Repeat for each VPC, attachment, and route table propagation.
 ## 📁 File Structure
 
 ```bash
-aws-govcloud-cosmos-project/
+govcloud-onboarding-framework/
 ├── cloudformation/         # All CloudFormation templates
 ├── architecture/           # Final network architecture diagrams
 │   └── GovCloudArchitecture.png
